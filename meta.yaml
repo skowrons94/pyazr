@@ -20,10 +20,7 @@ requirements:
     - emcee
     - h5py
     - jupyter
-
-test:
-  imports:
-    -
+    - curses
 
 about:
   home: https://github.com/skowrons94/pyazr
