@@ -11,7 +11,12 @@ requirements:
     - python
     - setuptools
     - root
+    - qt
+    - qwt
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake
+    - make
 
   run:
     - python
