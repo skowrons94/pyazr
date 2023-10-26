@@ -10,6 +10,8 @@ requirements:
   build:
     - python
     - setuptools
+    - root
+    - cmake
 
   run:
     - python
@@ -20,7 +22,7 @@ requirements:
     - emcee
     - h5py
     - jupyter
-    - curses
+    - ncurses
 
 about:
   home: https://github.com/skowrons94/pyazr
