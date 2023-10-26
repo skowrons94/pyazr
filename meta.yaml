@@ -3,8 +3,8 @@ package:
   version: 1.0
 
 source:
-  git_rev: 1.0
-  git_url:
+  git_rev: main
+  git_url: https://github.com/skowrons94/pyazr
 
 requirements:
   build:
@@ -26,7 +26,7 @@ test:
     -
 
 about:
-  home: https://palletsprojects.com/p/click/
-  license: BSD
-  license_family: BSD
+  home: https://github.com/skowrons94/pyazr
+  license: MIT
+  license_family: MIT
   summary: A Python interface for AZURE2
