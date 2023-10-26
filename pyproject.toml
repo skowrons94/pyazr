@@ -1,0 +1,31 @@
+[build-system]
+requires = [
+    "setuptools",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "iminuit",
+    "emcee",
+    "h5py",
+    "jupyter"
+    ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyazr"
+version = "1.0.0"
+authors = [
+  { name="Jakub Skowronski", email="jakub.skowronski@pd.infn.it" },
+]
+description = "A Python interface for AZURE2"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/sampleproject"
+"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"

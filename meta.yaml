@@ -1,0 +1,32 @@
+package:
+  name: pyazr
+  version: 1.0
+
+source:
+  git_rev: 1.0
+  git_url:
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - numpy
+    - scipy
+    - matplotlib
+    - iminuit
+    - emcee
+    - h5py
+    - jupyter
+
+test:
+  imports:
+    -
+
+about:
+  home: https://palletsprojects.com/p/click/
+  license: BSD
+  license_family: BSD
+  summary: A Python interface for AZURE2
