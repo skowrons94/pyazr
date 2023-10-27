@@ -16,7 +16,7 @@ class thread:
 
     def func(self):
         try:
-            subprocess.call("AZURE2 --use-api {} --gsl-coul {}".format(self.port,self.file), shell=True)
+            subprocess.call("AZURE2 --no-gui --gsl-coul --use-api {} {}".format(self.port,self.file), shell=True)
         except:
             print("Error: Failed to run AZURE2")
             quit( )
