@@ -13,13 +13,12 @@ requirements:
     - root
     - qt
     - qwt
-    - mesa
+    - mesalib
     - llvm-openmp
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
     - make
-    - gcc
 
   run:
     - python
