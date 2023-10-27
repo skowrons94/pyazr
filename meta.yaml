@@ -8,28 +8,31 @@ source:
 
 requirements:
   build:
-    - python
+    - python3
     - setuptools
     - root
     - qt
     - qwt
     - mesalib
     - llvm-openmp
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - gcc
     - cmake
     - make
 
   run:
-    - python
+    - python3
     - numpy
     - scipy
     - matplotlib
     - iminuit
     - emcee
     - h5py
-    - jupyter
     - ncurses
+    - root
+    - qt
+    - qwt
+    - mesalib
+    - llvm-openmp
 
 about:
   home: https://github.com/skowrons94/pyazr
