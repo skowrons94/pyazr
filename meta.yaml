@@ -10,14 +10,6 @@ requirements:
   build:
     - python
     - setuptools
-    - root
-    - qt
-    - qwt
-    - mesalib
-    - llvm-openmp
-    - clang
-    - cmake
-    - make
 
   run:
     - python
@@ -28,11 +20,6 @@ requirements:
     - emcee
     - h5py
     - ncurses
-    - root
-    - qt
-    - qwt
-    - mesalib
-    - llvm-openmp
 
 about:
   home: https://github.com/skowrons94/pyazr

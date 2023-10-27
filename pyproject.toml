@@ -7,8 +7,7 @@ requires = [
     "iminuit",
     "emcee",
     "h5py",
-    "ncurses",
-    "jupyter"
+    "ncurses"
     ]
 build-backend = "setuptools.build_meta"
 
