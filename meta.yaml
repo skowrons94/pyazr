@@ -15,7 +15,7 @@ requirements:
     - qwt
     - mesalib
     - llvm-openmp
-    - gcc
+    - clang
     - cmake
     - make
 
