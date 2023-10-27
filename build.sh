@@ -1,7 +1,8 @@
-mkdir ./build && cd ./build && 
-cmake ../AZURE2/ && make -j4 && cd -
+mkdir $RECIPE_DIR/build && cd $RECIPE_DIR/build 
+cmake $RECIPE_DIR/AZURE2/ -DBUILD_GUI=ON && make -j4
+cd $RECIPE_DIR
 
 mkdir -p $PREFIX/bin
-cp ./build/src/AZURE2 $PREFIX/bin/
+cp $RECIPE_DIR/build/src/AZURE2 $PREFIX/bin/
 
-$PYTHON setup.py install
+python3 $RECIPE_DIR/setup.py install
