@@ -1,3 +1,5 @@
 .DS_STORE
 examples/**
 build/**
+dist/**
+pyazr.egg-info
