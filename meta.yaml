@@ -13,6 +13,7 @@ requirements:
     - root
     - qt
     - qwt
+    - mesa
     - llvm-openmp
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
