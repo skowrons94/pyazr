@@ -27,10 +27,10 @@ class mcmc:
         self.backend = emcee.backends.HDFBackend("mcmc/mcmc.h5")
         self.backend.reset(self.nw, self.nd)
 
-        port = 20000 + current_process()._identity[0] - 1
-        api( ).set_data_mode( port )
-
     def prepare( self ):
+        for idx in range( nprocs ):
+            api( ).set_data_mode( 20000 + idx )
+
         self.p0 = np.zeros((self.nw, self.nd))
         params = np.delete( self.params, self.fixed_index )
         for i in range(self.nw):
