@@ -60,7 +60,7 @@ class minuit:
             residue += pow( (self.nuisances[idx][0] - params[idx])/self.nuisances[idx][1], 2 )
         self.iter += 1
         dt = time.time( ) - self.start_time
-        if( screen ):
+        if( self.screen ):
             self.screen.addstr( "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( self.PORT - 20000, self.iter/dt, residue) )
             self.screen.refresh()
         else:
