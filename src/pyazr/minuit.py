@@ -64,7 +64,7 @@ class minuit:
             self.screen.addstr( "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( self.PORT - 20000, self.iter/dt, residue) )
             self.screen.refresh()
         else:
-            print( "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( self.PORT - 20000, self.iter/dt, residue) )
+            print( "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( self.PORT - 20000, self.iter/dt, residue), end="\r" )
         return residue / self.scale
     
     def run( self ):
