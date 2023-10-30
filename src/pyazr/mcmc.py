@@ -28,7 +28,7 @@ class mcmc:
         self.backend.reset(self.nw, self.nd)
 
     def prepare( self ):
-        for idx in range( nprocs ):
+        for idx in range( self.nprocs ):
             api( ).set_data_mode( 20000 + idx )
 
         self.p0 = np.zeros((self.nw, self.nd))
