@@ -8,6 +8,9 @@ from .api import api
 from scipy import stats
 from multiprocessing import Pool, current_process
 
+import warnings
+warnings.filterwarnings('ignore')
+
 class mcmc:
 
     def __init__( self, nprocs, params, fixed_params, fixed_index, data, priors, labels, nsteps = 1000, nthin = 10 ):
