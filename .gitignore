@@ -2,4 +2,4 @@
 examples/**
 build/**
 dist/**
-pyazr.egg-info
+pyazr.egg-info/**
