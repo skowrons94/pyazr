@@ -178,12 +178,13 @@ class minimizer:
             api().set_data_mode( self.PORT + i )
             api().initialize( self.PORT + i )
     
-    def minuit( self, scale = True, radius = 0 ):
+    def minuit( self, scale = True, screen = False, radius = 0 ):
 
-        screen = 0#curses.initscr()
-        #for idx in range( self.nprocs ):
-        #    screen.addstr(idx, 0, "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( idx, 0, 0 ))
-        #screen.refresh()
+        if( screen ):
+            screen = curses.initscr()
+            for idx in range( self.nprocs ):
+                screen.addstr(idx, 0, "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( idx, 0, 0 ))
+            screen.refresh()
 
         params = [ [0,self.params.copy()] ]
         mask = np.array( [ 0.0001 if "E" in self.labels[idx] else 0.01 for idx in range( len( self.params ) ) ] )
@@ -199,7 +200,7 @@ class minimizer:
             for idx, output in enumerate( results ):
                 self.best[idx] = output 
 
-        #curses.endwin( )
+        if( screen ): curses.endwin( )
 
         for idx, par in self.best.items( ):
             if( not radius ):

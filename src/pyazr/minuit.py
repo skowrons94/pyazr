@@ -60,8 +60,11 @@ class minuit:
             residue += pow( (self.nuisances[idx][0] - params[idx])/self.nuisances[idx][1], 2 )
         self.iter += 1
         dt = time.time( ) - self.start_time
-        #self.screen.addstr( self.PORT - 20000, 0, "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( self.PORT - 20000, self.iter/dt, residue) )
-        #self.screen.refresh()
+        if( screen ):
+            self.screen.addstr( "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( self.PORT - 20000, self.iter/dt, residue) )
+            self.screen.refresh()
+        else:
+            print( "Process: {} ---- {:3.2f} it/s Chi2: {:15.4f}".format( self.PORT - 20000, self.iter/dt, residue) )
         return residue / self.scale
     
     def run( self ):
@@ -72,8 +75,11 @@ class minuit:
             self.scale = self.m.fval / self.nfree
             self.m.migrad( )
         
-        #self.screen.addstr( self.PORT - 20000, 0, "Chi2: {:15.4f} --- {}".format( self.m.fval, "Done!" ) )
-        #self.screen.refresh()
+        if( screen ):
+            self.screen.addstr( "Process: {} ---- Iter: {} it Chi2: {:15.4f} Done!".format( self.PORT - 20000, self.iter, self.m.fval) )
+            self.screen.refresh()
+        else:
+            print( "Process: {} ---- Iter: {} it Chi2: {:15.4f} Done!".format( self.PORT - 20000, self.iter, self.m.fval) )
 
         self.params_errors = self.params.copy( )
         for idx in range( len( self.params ) ):
