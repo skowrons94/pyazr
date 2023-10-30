@@ -54,7 +54,13 @@ class calc:
             if( nsegments == 0 ): continue
             self.save( par, calc, energies )
             dt = time.time( ) - self.start_time
-            #screen.addstr( self.PORT - 20000, 0, "Extrapolating: {} ---- {:3.2f} it/s".format( self.PORT - 20000, self.iter/dt) )
-            #screen.refresh()
-        #screen.addstr( self.PORT - 20000, 0, "Extrapolating: {:3.2f} it/s {}".format( self.iter/dt, "Completed!" ) )
-        #screen.refresh()
+            if( self.screen ):
+                screen.addstr( self.PORT - 20000, 0, "Extrapolating: {} ---- {:3.2f} it/s".format( self.PORT - 20000, self.iter/dt) )
+                screen.refresh()
+            else:
+                print( "Extrapolating: {} ---- {:3.2f} it/s".format( self.PORT - 20000, self.iter/dt), end="\r" )
+        if( self.screen ):
+            screen.addstr( self.PORT - 20000, 0, "Extrapolating: {:3.2f} it/s {}".format( self.iter/dt, "Completed!" ) )
+            screen.refresh()
+        else:
+            print( "Extrapolating: {} ---- {:3.2f} it {}".format( self.PORT - 20000, self.iter, "Completed!" ) )

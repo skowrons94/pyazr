@@ -216,23 +216,21 @@ class minimizer:
         min = mcmc( self.nprocs, self.config.params, self.config.fixed_params, self.config.fixed_index, self.data, self.config.priors, self.labels )
         min.start( )
 
-    def sample( self, params ):
+    def sample( self, params, screen = False ):
 
-        #screen = curses.initscr()
-        #for idx in range( self.nprocs ):
-        #    screen.addstr(idx, 0, "Extrapolating: {} ---- {:3.2f} it/s".format( idx, 0 ))
-        #screen.refresh()
-        screen = 0
+        if( screen ):
+            screen = curses.initscr()
+            for idx in range( self.nprocs ):
+                screen.addstr(idx, 0, "Extrapolating: {} ---- {:3.2f} it/s".format( idx, 0 ))
+            screen.refresh()
 
         chunks, bucket = np.split( params, self.nprocs ), [ ]
         for idx, arr in enumerate(chunks): bucket.append( [idx, arr] )
 
         with ThreadPool( processes = self.nprocs ) as pool:
             func = partial( thread_sample, screen=screen )
-            results = pool.map( func, bucket )
+            pool.map( func, bucket )
             pool.close( )
             pool.join( )
-            #extrap.clear()
-            #params = [ p.get( ) for p in results ]
         
-        #curses.endwin( )
+        if( screen ): curses.endwin( )
