@@ -35,7 +35,7 @@ class mcmc:
         params = np.delete( self.params, self.fixed_index )
         for i in range(self.nw):
             for k in range( len( params ) ):
-                if( "E" in self.labels[k] ): self.p0[i][k] = stats.norm( params[k], abs( 0.001*params[k] ) ).rvs()
+                if( "E" in self.labels[k] ): self.p0[i][k] = stats.norm( params[k], abs( 0.0005*params[k] ) ).rvs()
                 else: self.p0[i][k] = stats.norm( params[k], abs( 0.05*params[k] ) ).rvs()
 
     def calculate( self, params ):
