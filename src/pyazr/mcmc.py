@@ -62,14 +62,12 @@ class mcmc:
 
     def lnP( self, params ):
         lnpi = self.lnPi( params )
-        if not np.isfinite( lnpi ):
-            return -np.inf
+        if not np.isfinite( lnpi ): return -np.inf
         for idx in range( len( self.fixed_params ) ):
             params = np.insert( params, self.fixed_index[idx], self.fixed_params[idx] )
         lnl = self.lnL(params)
-        if not np.isfinite( lnl ):
-            return -np.inf
-        return self.lnL(params) + lnpi
+        if not np.isfinite( lnl ): return -np.inf
+        return lnl + lnpi
     
     def start( self ):
 
