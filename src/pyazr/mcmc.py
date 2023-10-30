@@ -13,10 +13,10 @@ warnings.filterwarnings('ignore')
 
 class mcmc:
 
-    def __init__( self, nprocs, params, fixed_params, fixed_index, data, priors, labels, nsteps = 1000, nthin = 10 ):
+    def __init__( self, nprocs, params, fixed_params, fixed_index, data, priors, labels, scale, nsteps = 1000, nthin = 10 ):
 
         self.params, self.fixed_params, self.fixed_index, self.labels = params, fixed_params, fixed_index, labels
-        self.data, self.priors = data, priors
+        self.data, self.priors, self.scale = data, priors, scale
         self.nsteps, self.nthin = nsteps, nthin
         self.nprocs = nprocs
 
@@ -60,7 +60,7 @@ class mcmc:
             return -np.inf
         lnl = 0
         for key in model.keys( ):
-            lnl += np.sum(-0.5*np.log(2*np.pi*pow(self.data[key][:,2],2)) - 0.5*pow((model[key] - self.data[key][:,1]*norms[key])/(norms[key]*self.data[key][:,2]),2))
+            lnl += np.sum(-0.5*np.log(2*np.pi*pow(self.data[key][:,2],2)) - ( 0.5*pow((model[key] - self.data[key][:,1]*norms[key])/(norms[key]*self.data[key][:,2]),2)) / self.scale[key] )
         return lnl
 
     def lnP( self, params ):

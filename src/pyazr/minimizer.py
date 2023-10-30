@@ -212,8 +212,8 @@ class minimizer:
             self.config.params = par[0]
             self.config.update_calculated( dir = "minuit/calc/segment_{}".format(idx) )
 
-    def mcmc( self ):
-        min = mcmc( self.nprocs, self.config.params, self.config.fixed_params, self.config.fixed_index, self.data, self.config.priors, self.labels )
+    def mcmc( self, scale = 1 ):
+        min = mcmc( self.nprocs, self.config.params, self.config.fixed_params, self.config.fixed_index, self.data, self.config.priors, self.labels, scale )
         min.start( )
 
     def sample( self, params, screen = False ):
