@@ -60,7 +60,7 @@ class mcmc:
             return -np.inf
         lnl = 0
         for key in model.keys( ):
-            lnl += np.sum(-0.5*np.log(2*np.pi*pow(self.data[key][:,2],2)) - ( 0.5*pow((model[key] - self.data[key][:,1]*norms[key])/(norms[key]*self.data[key][:,2]),2)) / self.scale[key] )
+            lnl += np.sum(-0.5*np.log(2*np.pi*pow(self.data[key][:,2],2)) - ( 0.5*pow((model[key] - self.data[key][:,1]*norms[key])/(norms[key]*self.data[key][:,2]),2)) / self.scale )
         return lnl
 
     def lnP( self, params ):
