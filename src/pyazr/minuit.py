@@ -75,7 +75,7 @@ class minuit:
             self.scale = self.m.fval / self.nfree
             self.m.migrad( )
         
-        if( screen ):
+        if( self.screen ):
             self.screen.addstr( "Process: {} ---- Iter: {} it Chi2: {:15.4f} Done!".format( self.PORT - 20000, self.iter, self.m.fval) )
             self.screen.refresh()
         else:
