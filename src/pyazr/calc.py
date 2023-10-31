@@ -36,7 +36,7 @@ class calc:
                     f["Segment_{}".format(key)].resize((f["Segment_{}".format(key)].shape[0] + 1), axis = 0)
                     f["Segment_{}".format(key)][-1] = segment
                     f["Energies_{}".format(key)].resize((f["Energies_{}".format(key)].shape[0] + 1), axis = 0)
-                    f["Energies_{}".format(key)][-1] = segment
+                    f["Energies_{}".format(key)][-1] = energies[key]
 
     def calculate( self, params ):
         energies, calc, nsegments = {}, {}, api( ).update_segments( params, self.PORT )
@@ -48,8 +48,7 @@ class calc:
     
     def run( self ):
         self.start_time, self.iter, bucket = time.time( ), 0, []
-        for par in self.params:
-            self.iter += 1
+        for self.iter, par in enumerate(self.params):
             calc, energies, nsegments = self.calculate( par )
             if( nsegments == 0 ): continue
             self.save( par, calc, energies )
