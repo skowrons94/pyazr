@@ -197,3 +197,23 @@ class api:
         params = self.client.receive( 'd' )
         self.client.disconnect( )
         return params
+    
+    def get_calculated_segment_e1(self, port, idx):
+        cmd = 17
+        data = [idx]
+        self.client = client( port )
+        self.client.connect( )
+        self.client.send( cmd, data, 'd' )
+        data = self.client.receive( 'd' )
+        self.client.disconnect( )
+        return data
+    
+    def get_calculated_segment_e2(self, port, idx):
+        cmd = 18
+        data = [idx]
+        self.client = client( port )
+        self.client.connect( )
+        self.client.send( cmd, data, 'd' )
+        data = self.client.receive( 'd' )
+        self.client.disconnect( )
+        return data

@@ -15,9 +15,13 @@ from scipy import stats
 from functools import partial
 from multiprocessing.pool import ThreadPool as ThreadPool
 
-def thread_minuit( iter, data, fixed, limits, labels, nuisances, screen, scale, radius ):
+def thread_minuit( iter, data, fixed, limits, labels, nuisances, screen, radius, 
+                   ignored_segments, e1_segments, e2_segments, ratio_segments, sum_segments,
+                   is_scale, is_sivia ):
     port = 20000 + iter[0]
-    min = minuit( iter[1], data, fixed, limits, labels, port, nuisances, screen, scale, radius )
+    min = minuit( iter[1], data, fixed, limits, labels, port, nuisances, screen, 
+                  ignored_segments, e1_segments, e2_segments, ratio_segments, sum_segments, 
+                  radius, is_scale, is_sivia )
     return min.run( )
 
 def thread_sample( iter, screen ):
@@ -71,6 +75,7 @@ class config:
         with open( "config/mcmc_priors.dat", "w" ) as f:
             f.write( "# Index\tLabel\tValue\tDistribution\tParams\tParams\tFixed\n" )
             for idx, par in enumerate( self.params ):
+                print( len( self.params), len( self.fixed ) )
                 if( not self.fixed[idx] ):
                     f.write( "{}\t{}\t{:.4E}\t{}\t{:.4E}\t{:.4E}\t{}\n".format( idx, self.labels[idx], par, "uniform", -1e10, 1e10, "False" ) )
                 else:
@@ -152,8 +157,6 @@ class config:
             for idx in range( len( self.labels ) ):
                 f.write( "{}\t{:.4E}\t{}\n".format( self.labels[idx], self.params[idx], self.fixed[idx] ) )
 
-
-
 class minimizer:
 
     PORT = 20000
@@ -178,7 +181,8 @@ class minimizer:
             api().set_data_mode( self.PORT + i )
             api().initialize( self.PORT + i )
     
-    def minuit( self, scale = True, screen = False, radius = 0 ):
+    def minuit( self, screen = False, ignored_segments=[], e1_segments=[], e2_segments=[], 
+                ratio_segments=[], sum_segments=[], radius = 0, is_scale = True, is_sivia = False ):
 
         if( screen ):
             screen = curses.initscr()
@@ -193,10 +197,16 @@ class minimizer:
 
         self.best = { }
         with ThreadPool( processes = self.nprocs ) as pool:
-            func = partial( thread_minuit, data=self.data, fixed=self.config.fixed, limits=self.config.limits, nuisances=self.config.nuisances, labels=self.labels, screen=screen, scale=scale, radius=radius )
+            func = partial( thread_minuit, data=self.data, fixed=self.config.fixed, limits=self.config.limits, 
+                            nuisances=self.config.nuisances, labels=self.labels, screen=screen, radius=radius,
+                            ignored_segments=ignored_segments, e1_segments=e1_segments, e2_segments=e2_segments,
+                            ratio_segments=ratio_segments, sum_segments=sum_segments, is_scale=is_scale, is_sivia=is_sivia )
+            
             results = pool.map( func, params )
+            
             pool.close( )
             pool.join( )
+            
             for idx, output in enumerate( results ):
                 self.best[idx] = output 
 
