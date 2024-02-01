@@ -1,7 +1,7 @@
 import subprocess 
 import threading
 
-class thread:
+class server:
 
     def __init__(self,port,file):
         self.port, self.file = port, file
@@ -15,8 +15,8 @@ class thread:
         self.thread.join( )
 
     def func(self):
-        try:
-            subprocess.call("AZURE2 --no-gui --gsl-coul --use-api {} {}".format(self.port,self.file), shell=True)
+        try: 
+            subprocess.call("/data0/skowrons/r_matrix/codes/AZURE2/build/src/AZURE2 --no-gui --gsl-coul --use-api {} {}".format(self.port,self.file), shell=True)
         except:
             print("Error: Failed to run AZURE2")
             quit( )
