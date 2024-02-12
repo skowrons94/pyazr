@@ -16,7 +16,7 @@ class server:
 
     def func(self):
         try: 
-            subprocess.call("/data0/skowrons/r_matrix/codes/AZURE2/build/src/AZURE2 --no-gui --gsl-coul --use-api {} {}".format(self.port,self.file), shell=True)
+            subprocess.call("AZURE2 --no-gui --gsl-coul --use-api {} {}".format(self.port,self.file), shell=True)
         except:
             print("Error: Failed to run AZURE2")
             quit( )

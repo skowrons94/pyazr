@@ -5,6 +5,9 @@ package:
 source:
   path: ./
 
+build:
+  noarch: python
+
 requirements:
   build:
     - python
@@ -13,12 +16,6 @@ requirements:
   run:
     - python
     - numpy
-    - scipy
-    - matplotlib
-    - iminuit
-    - emcee
-    - h5py
-    - ncurses
 
 about:
   home: https://github.com/skowrons94/pyazr

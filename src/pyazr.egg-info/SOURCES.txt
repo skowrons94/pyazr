@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+src/pyazr/__init__.py
+src/pyazr/azure2.py
+src/pyazr/client.py
+src/pyazr/server.py
+src/pyazr.egg-info/PKG-INFO
+src/pyazr.egg-info/SOURCES.txt
+src/pyazr.egg-info/dependency_links.txt
+src/pyazr.egg-info/top_level.txt

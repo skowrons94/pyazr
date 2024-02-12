@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: pyazr
+Version: 1.0.0
+Summary: A Python interface for AZURE2
+Home-page: https://github.com/skowrons94/pyazr
+Author: Jakub Skowronski
+Author-email: Jakub Skowronski <jakub.skowronski@pd.infn.it>
+Project-URL: Homepage, https://github.com/skowrons94/pyazr
+Project-URL: Bug Tracker, https://github.com/skowrons94/pyazr/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# pyazr
+
+A Python3 interface for AZURE2.
