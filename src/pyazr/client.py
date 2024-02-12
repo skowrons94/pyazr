@@ -33,6 +33,7 @@ class client:
         # Server information
         self.server_address = server
         self.server_port = port
+        self.connect( )
 
     def __del__(self):
         self.disconnect( )
@@ -57,8 +58,8 @@ class client:
 
     # Function to receive data
     def receive(self, type):
-        buffer = self.client_socket.recv(self.BUFFER_SIZE)
-        
+
+        buffer = self.client_socket.recv(self.BUFFER_SIZE, socket.MSG_WAITALL)
         try: buffer_size = int(struct.unpack(type, buffer[:8])[0])
         except: buffer_size = 0
 
@@ -67,8 +68,6 @@ class client:
         return np.asarray( data )
     
     def communicate(self, cmd, data, type = 'd'):
-        self.connect( )
         self.send( self.CMD[cmd], data, type )
         data = self.receive( type )
-        self.disconnect( )
         return data
