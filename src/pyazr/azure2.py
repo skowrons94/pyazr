@@ -43,11 +43,16 @@ class azure2:
         segments = [ self.clients[proc].communicate( "GET_CALCULATED_SEGMENT", [i] ) for i in range( nsegments ) ]
         return segments
     
+    def calculate_energies( self, params, proc = 0 ):
+        nsegments = int(self.clients[proc].communicate( "UPDATE_SEGMENTS", params ))
+        segments = [ self.clients[proc].communicate( "GET_CALCULATED_ENERGIES", [i] ) for i in range( nsegments ) ]
+        return segments
+    
     def calculate_sfactor( self, params, proc = 0 ):
-        self.clients[proc].communicate( "UPDATE_SEGMENTS", params )
-        segments = [ self.clients[proc].communicate( "GET_CALCULATED_SEGMENT", [i] ) for i in range( self.nsegments ) ]
-        conv = [ self.clients[proc].communicate( "GET_CALCULATED_CONV", [i] ) for i in range( self.nsegments ) ]
-        for i in range( self.nsegments ): segments[i] *= conv[i]
+        nsegments = int(self.clients[proc].communicate( "UPDATE_SEGMENTS", params ))
+        segments = [ self.clients[proc].communicate( "GET_CALCULATED_SEGMENT", [i] ) for i in range( nsegments ) ]
+        conv = [ self.clients[proc].communicate( "GET_CALCULATED_CONV", [i] ) for i in range( nsegments ) ]
+        for i in range( nsegments ): segments[i] *= conv[i]
         return segments
     
     def extrap_mode( self ):
