@@ -10,10 +10,10 @@ class azure2:
 
     PORT = 20000
     servers = []
-    clients = []
 
     def __init__( self, file, nprocs = 1 ):
         self.file= file
+        self.clients = []
         self.spawn( nprocs )
         self.configure( )
 
